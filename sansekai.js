@@ -4,10 +4,60 @@ const util = require('util')
 const chalk = require('chalk')
 const { Configuration, OpenAIApi } = require("openai")
 //let setting = require('./accesser.json')
-const keyopenai = require(process.env.keyopenai)
-const autoAI = require(process.env.autoAI)
 const BOT_NAME = process.env.BOT_NAME ?? "John Sathya Seelan";
 const Friends = process.env.Friends ?? "Judson" + "Pranesh";
+/*fetch('./accesser.json')
+  .then(response => response.json())
+  .then(data => {
+    // access the my_var property
+	keyopenai = data.keyopenai;
+	autoAI = data.autoAI;
+    console.log(data.my_var);
+  })
+  .catch(error => {
+    // handle any errors
+    console.error(error);
+  });*/
+const keyopenai = process.env.keyopenai;
+const autoAI = process.env.autoAI;
+//let keyopenai = require('process.env.keyopenai')
+//let autoAI = require('process.env.autoAI')
+/*autoAI = data.autoAI;
+if (typeof fetch !== 'undefined') {
+  // use fetch to make the request
+  fetch('./accesser.json')
+    .then(response => response.json())
+    .then(data => {
+      // do something with the data
+	keyopenai = data.keyopenai;
+	autoAI = data.autoAI;
+    console.log(data.my_var);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+} else {
+  // use XMLHttpRequest to make the request
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', './accesser.json');
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      const data = JSON.parse(xhr.responseText);
+      // do something with the data
+	keyopenai = data.keyopenai;
+	autoAI = data.autoAI;
+    console.log(data.my_var);
+    } else {
+      console.error('Error loading data');
+    }
+  };
+  xhr.onerror = function() {
+    console.error('Error loading data');
+  };
+  xhr.send();
+}*/
+
+
 
 module.exports = sansekai = async (client, m, chatUpdate, store) => {
     try {
@@ -52,7 +102,7 @@ module.exports = sansekai = async (client, m, chatUpdate, store) => {
                 // client.sendReadReceipt(m.chat, m.sender, [m.key.id])
                 console.log(chalk.black(chalk.bgWhite('[ LOGS ]')), color(argsLog, 'turquoise'), chalk.magenta('From'), chalk.green(pushname), chalk.yellow(`[ ${m.sender.replace('@s.whatsapp.net', '')} ]`), chalk.blueBright('IN'), chalk.green(groupName))
             }
-        } else if (!setting.autoAI) {
+        } else if (!autoAI) {
             if (isCmd2 && !m.isGroup) {
                 console.log(chalk.black(chalk.bgWhite('[ LOGS ]')), color(argsLog, 'turquoise'), chalk.magenta('From'), chalk.green(pushname), chalk.yellow(`[ ${m.sender.replace('@s.whatsapp.net', '')} ]`))
             } else if (isCmd2 && m.isGroup) {
@@ -102,7 +152,7 @@ module.exports = sansekai = async (client, m, chatUpdate, store) => {
                 }
             }
         }
-        if (!setting.autoAI && !m.isGroup) {
+        if (!autoAI && !m.isGroup) {
             if (isCmd2) {
                 switch (command) {
                     case 'ai':
